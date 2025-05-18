@@ -1,5 +1,6 @@
-llm_context/
-data/raw/
+context/
+.cursor/
+data/raw/*
 .DS_Store
 .env
 # Python
