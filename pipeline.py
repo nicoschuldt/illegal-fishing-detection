@@ -252,4 +252,31 @@ def test_ml_pipeline():
 
 
 if __name__ == "__main__":
-    test_ml_pipeline()
+    import argparse
+    from src.data.fishing import fetch_ais
+
+    p = argparse.ArgumentParser()
+    p.add_argument("mmsi",   type=str, help="MMSI du navire")
+    p.add_argument("--hours", type=int, default=12, help="Fenêtre en heures")
+    args = p.parse_args()
+
+    # 1) Récupérer les AIS bruts
+    df_raw = fetch_ais(args.mmsi, args.hours)
+    if df_raw.empty:
+        print(f"Aucun point AIS pour le MMSI {args.mmsi} sur les dernières {args.hours} h")
+        exit(1)
+
+    # 2) Lancer ton pipeline ML
+    detector = IllegalFishingDetector()
+    result   = detector.analyze_vessel_data(df_raw, args.mmsi)
+
+    # 3) Afficher le résultat
+    if result.success:
+        print("=== Résumé de l’analyse ===")
+        print(f"Total points AIS : {result.fishing_summary.total_ais_points}")
+        print(f"Pêche estimée    : {result.fishing_summary.fishing_points}")
+        print(f"% Pêche          : {result.fishing_summary.fishing_percentage:.1f}%")
+        print(f"Violation MPA    : {result.violation_detected}")
+        print(f"Niveau de risque : {result.risk_level}")
+    else:
+        print("Erreur :", result.error_message)
