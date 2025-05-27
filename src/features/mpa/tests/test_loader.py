@@ -1,8 +1,8 @@
 # src/feature/mpa_module/tests/test_loader.py
 import pytest
 from pathlib import Path
-from feature.mpa_module.loader import MPALoader
-from feature.mpa_module.utils import MPAQuery
+from features.mpa_module.loader import MPALoader
+from features.mpa_module.utils import MPAQuery
 
 DATA_DIR = Path(__file__).resolve().parents[4] / "data" / "tests"
 
