@@ -3,11 +3,10 @@ numpy==1.24.4
 pandas==2.0.3 
 matplotlib==3.7.3
 seaborn==0.13.0
+joblib>=1.0.0
 
 # Geospatial libraries
 geopandas==0.14.1
-folium==0.14.0
-shapely==2.0.2
 pyproj==3.6.1
 
 # Machine learning libraries
@@ -24,3 +23,10 @@ python-dotenv==1.0.0
 fiona>=1.9.0
 rtree>=1.0.1
 pytest>=7.0.0
+
+# Streamlit and Visualization
+streamlit==1.45.1
+streamlit_folium==0.25.0
+plotly==6.1.2
+folium==0.14.0
+shapely==2.0.2
