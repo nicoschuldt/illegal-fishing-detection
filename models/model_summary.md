@@ -2,7 +2,7 @@
 # Fishing Detection Model Summary
 
 ## Model Performance
-- **Accuracy**: 0.861
+- **Accuracy**: 0.86
 - **Cross-validation Mean**: 0.882 ± 0.016
 - **Features Used**: 15
 
